@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="librerias">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/librerias/commons-email-1.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/librerias/javax.mail.jar!/" />
+      <root url="jar://$PROJECT_DIR$/librerias/commons-codec-1.15.jar!/" />
+      <root url="jar://$PROJECT_DIR$/librerias/mysql-connector-java-5.1.15-bin.jar!/" />
+      <root url="jar://$PROJECT_DIR$/librerias/jcalendar-1.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/librerias/jcalendar_1.0.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/librerias/activation-0.X.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
