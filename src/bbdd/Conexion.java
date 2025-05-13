@@ -32,7 +32,7 @@ public class Conexion {
     public static Connection conectar() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://145.14.151.1/u812167471_consultorio25", "u812167471_consultorio25", "2025-Consultorio");
+            conn = DriverManager.getConnection("jdbc:mysql://susan.hidencloud.com:24651/consultorio", "destro", "DestroXD");
             System.out.println("Conexión exitosa a la base de datos");
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);

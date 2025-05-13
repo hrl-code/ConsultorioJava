@@ -69,9 +69,7 @@ public class Enfermeria extends javax.swing.JFrame {
         campodni = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1175, 650));
         setMinimumSize(new java.awt.Dimension(1175, 650));
-        setPreferredSize(new java.awt.Dimension(1175, 650));
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 204));
