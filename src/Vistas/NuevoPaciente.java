@@ -527,6 +527,7 @@ String nombre, apellidos, email;
     Date FechaNac;
 
     void registrarNuevoPaciente() {
+        Date hoy = new Date();
 
         if (!Utilidades.campoVacio(camponombre)) {
             Utilidades.lanzaAlertaCampoVacio(camponombre);
@@ -534,6 +535,8 @@ String nombre, apellidos, email;
             Utilidades.lanzaAlertaCampoVacio(campoapellido);
         } else if (campofecha.getDate() == null) {
             JOptionPane.showMessageDialog(this, "Debes seleccionar una fecha por favor");
+        }else if (campofecha.getDate().after(hoy)) {
+            JOptionPane.showMessageDialog(this, "La fecha no puede ser mayor a la actual");
         } else if (!Utilidades.campoVacio(campotel)) {
             Utilidades.LazarAlertaCampoNumerico(this, campotel);
         } else if (Integer.parseInt(campotel.getText()) > 111111111 && Integer.parseInt(campotel.getText()) < 999999999) {

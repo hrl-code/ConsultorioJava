@@ -311,46 +311,9 @@ public class Medico extends javax.swing.JFrame {
 
     private void botonbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonbuscarActionPerformed
 
-        Conexion.conectar();
-        dni = campodni.getText();
-        nom = camponombre.getText();
-        ape = campoapellidos.getText();
-
-        if (!Utilidades.campoVacio(campodni)) {
-            Utilidades.lanzaAlertaCampoVacio(campodni);
-        } else if (!Utilidades.confirmaacionDNI(campodni)) {
-            JOptionPane.showMessageDialog(this, "El DNI no es válido, introduzca uno válido por favor");
-
-        } else {
-            try {
-                Paciente paciente = Conexion.recuperaDatosPaciente(campodni.getText());
-                if (paciente != null) {
-                    dni = campodni.getText();
-                    nom = camponombre.getText();
-                    ape = campoapellidos.getText();
-                    camponombre.setText(paciente.getNombre());
-                    campoapellidos.setText(paciente.getApellidos());
-                    campotel.setText(String.valueOf(paciente.getTelefono()));
-                    campoemail.setText(paciente.getEmail());
-                    campoactualizar.setEnabled(rootPaneCheckingEnabled);
-                    mod = (DefaultTableModel) tabla.getModel();
-                    camponuevoin.setEnabled(rootPaneCheckingEnabled);
-                    camponueva.setEnabled(rootPaneCheckingEnabled);
-                    Conexion.cargarTablaConsultasMedicasPorPaciente(mod, dni);
-                } else {
-                    JOptionPane.showMessageDialog(this, "No se encontró un paciente con el DNI proporcionado.");
-                    NuevoPaciente N = new NuevoPaciente(this, rootPaneCheckingEnabled);
-                    N.setVisible(true);
-                }
-            } catch (Exception ex) {
-                Logger.getLogger(Medico.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            dni = campodni.getText();
-            nom = camponombre.getText();
-            ape = campoapellidos.getText();
-            email = campoemail.getText();
-        }
-
+        DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
+        modelo.setRowCount(0);
+        buscar();
     }//GEN-LAST:event_botonbuscarActionPerformed
 
     private void campoactualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoactualizarActionPerformed
@@ -465,6 +428,48 @@ public class Medico extends javax.swing.JFrame {
 
         JOptionPane.showMessageDialog(this, new JScrollPane(t), "INFORME", 1);
 
+    }
+
+    public void buscar() {
+        Conexion.conectar();
+        dni = campodni.getText();
+        nom = camponombre.getText();
+        ape = campoapellidos.getText();
+
+        if (!Utilidades.campoVacio(campodni)) {
+            Utilidades.lanzaAlertaCampoVacio(campodni);
+        } else if (!Utilidades.confirmaacionDNI(campodni)) {
+            JOptionPane.showMessageDialog(this, "El DNI no es válido, introduzca uno válido por favor");
+
+        } else {
+            try {
+                Paciente paciente = Conexion.recuperaDatosPaciente(campodni.getText());
+                if (paciente != null) {
+                    dni = campodni.getText();
+                    nom = camponombre.getText();
+                    ape = campoapellidos.getText();
+                    camponombre.setText(paciente.getNombre());
+                    campoapellidos.setText(paciente.getApellidos());
+                    campotel.setText(String.valueOf(paciente.getTelefono()));
+                    campoemail.setText(paciente.getEmail());
+                    campoactualizar.setEnabled(rootPaneCheckingEnabled);
+                    mod = (DefaultTableModel) tabla.getModel();
+                    camponuevoin.setEnabled(rootPaneCheckingEnabled);
+                    camponueva.setEnabled(rootPaneCheckingEnabled);
+                    Conexion.cargarTablaConsultasMedicasPorPaciente(mod, dni);
+                } else {
+                    JOptionPane.showMessageDialog(this, "No se encontró un paciente con el DNI proporcionado.");
+                    NuevoPaciente N = new NuevoPaciente(this, rootPaneCheckingEnabled);
+                    N.setVisible(true);
+                }
+            } catch (Exception ex) {
+                Logger.getLogger(Medico.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            dni = campodni.getText();
+            nom = camponombre.getText();
+            ape = campoapellidos.getText();
+            email = campoemail.getText();
+        }
     }
 
 }

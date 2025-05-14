@@ -327,7 +327,7 @@ public class Enfermeria extends javax.swing.JFrame {
                    
                     camponombre.setText(paciente.getNombre());
                     campoapellidos.setText(paciente.getApellidos());
-                    campotel.setText(String.valueOf((char) paciente.getTelefono()));
+                    campotel.setText(String.valueOf(paciente.getTelefono()));
                     campoemail.setText(paciente.getEmail());
                     campoactualizar.setEnabled(rootPaneCheckingEnabled);
                     mod = (DefaultTableModel) tabla.getModel();
