@@ -18,20 +18,17 @@ import java.lang.System.Logger.Level;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
-
 /**
  *
  * @author Destro
  */
 public class NuevaCitaEnfermeria extends javax.swing.JDialog {
 
-   
-     
     public NuevaCitaEnfermeria(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         campodni.setText(dni);
-         camponom.setText(nom + " " + ape );
+        camponom.setText(nom + " " + ape);
     }
 
     /**
@@ -255,8 +252,6 @@ public class NuevaCitaEnfermeria extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 
-
-    
     Date fecha;
     Double hora;
 
@@ -272,46 +267,47 @@ public class NuevaCitaEnfermeria extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Debes seleccionar una hora, por favor.");
         } else {
 
-            
-                try {
-                    
-                    
-                    String dni = Encriptado.encriptar(campodni.getText());
-                    String nombre = Encriptado.encriptar(camponom.getText());
-                    switch (combofecha.getSelectedItem().toString()) {
-                        case "Una Semana" -> fecha = Utilidades.sumarRestarDiasFecha(new Date(), 7);
-                        case "Dos Semanas" -> fecha = Utilidades.sumarRestarDiasFecha(new Date(), 14);
-                        case "Un Mes" -> fecha = Utilidades.sumarRestarDiasFecha(new Date(), 30);
-                            default -> JOptionPane.showMessageDialog(this, "Introduzca una fecha valida");
-                    }
-                    
-                    try {
-                        hora = Double.parseDouble(combohora.getSelectedItem().toString());
-                    } catch (NumberFormatException ex) {
-                        JOptionPane.showMessageDialog(this, "Formato de hora no válido. Por favor, selecciona una hora correcta.");
-                        return;
-                    }
-                    
-                    // Crear una nueva cita
-                    Cita cita2 = new Cita(campodni.getText(), camponom.getText(), fecha, hora);
-                    Cita cita = new Cita(dni, nombre, fecha, hora);
-                    Conexion.conectar();
-                    
-                    if (Conexion.registrarCitaEnfermeria(cita)) {
-                        JOptionPane.showMessageDialog(this, "Registro realizado correctamente.");
-                        
-                        UtilidadEmail.enviaMailHtml(cita2, email);
-                        
-                    } else {
-                        JOptionPane.showMessageDialog(this, "Error al realizar el registro, intentalo más tarde.");
-                    }
-                    Conexion.cerrarConexion();
-                    
-                    
-                } catch (Exception ex) {
-                    java.util.logging.Logger.getLogger(NuevaCitaEnfermeria.class.getName()).log(java.util.logging.Level.SEVERE, null,ex);
+            try {
+
+                String dni = Encriptado.encriptar(campodni.getText());
+                String nombre = Encriptado.encriptar(camponom.getText());
+                switch (combofecha.getSelectedItem().toString()) {
+                    case "Una Semana" ->
+                        fecha = Utilidades.sumarRestarDiasFecha(new Date(), 7);
+                    case "Dos Semanas" ->
+                        fecha = Utilidades.sumarRestarDiasFecha(new Date(), 14);
+                    case "Un Mes" ->
+                        fecha = Utilidades.sumarRestarDiasFecha(new Date(), 30);
+                    default ->
+                        JOptionPane.showMessageDialog(this, "Introduzca una fecha valida");
                 }
-           
+
+                try {
+                    hora = Double.parseDouble(combohora.getSelectedItem().toString());
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(this, "Formato de hora no válido. Por favor, selecciona una hora correcta.");
+                    return;
+                }
+
+                // Crear una nueva cita
+                Cita cita2 = new Cita(campodni.getText(), camponom.getText(), fecha, hora);
+                Cita cita = new Cita(dni, nombre, fecha, hora);
+                Conexion.conectar();
+
+                if (Conexion.registrarCitaEnfermeria(cita)) {
+                    JOptionPane.showMessageDialog(this, "Registro realizado correctamente.");
+
+                    UtilidadEmail.enviaMailHtml(cita2, email);
+
+                } else {
+                    JOptionPane.showMessageDialog(this, "Error al realizar el registro, intentalo más tarde.");
+                }
+                Conexion.cerrarConexion();
+                this.dispose();
+
+            } catch (Exception ex) {
+                java.util.logging.Logger.getLogger(NuevaCitaEnfermeria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            }
 
         }
 

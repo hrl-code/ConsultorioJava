@@ -381,7 +381,7 @@ int colegiado;
      minima = Integer.parseInt(tensionmin.getText());
      glucosa = Integer.parseInt(campoglucosa.getText());
      peso = Integer.parseInt(campopeso.getText());
-     colegiado = Integer.parseInt(Login.datosPersona[1]);
+     colegiado = Integer.parseInt(Login.datosPersonal[1]);
      
          ConsultaEnfermeria cg = new ConsultaEnfermeria(dnii, fecha, maxima, minima, glucosa, peso, colegiado);
      Conexion.conectar();

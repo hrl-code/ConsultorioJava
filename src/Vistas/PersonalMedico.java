@@ -292,6 +292,8 @@ String nom, ape, usua, cont, tipoP;
 
         if (!Utilidades.campoVacio(camponumerodelcolegiado)) {
             Utilidades.lanzaAlertaCampoVacio(camponumerodelcolegiado);
+        } else if (Integer.parseInt(camponumerodelcolegiado.getText()) < 9) {
+            JOptionPane.showMessageDialog(this, "Numero no valido, a de tener 9 digitos.");
         } else if (!Utilidades.campoVacio(camponombre)) {
             Utilidades.lanzaAlertaCampoVacio(camponombre);
         } else if (!Utilidades.campoVacio(campoapellidos)) {
@@ -320,9 +322,9 @@ String nom, ape, usua, cont, tipoP;
 
             try {
                 if (Conexion.registrarPersonal(p)) {
-                    
+
                     JOptionPane.showMessageDialog(this, "Registro realizado correctamente.");
-                    
+
                 } else {
                     JOptionPane.showMessageDialog(this, "Error al realizar el registro, intentalo más tarde.");
                 }
@@ -330,6 +332,13 @@ String nom, ape, usua, cont, tipoP;
                 Logger.getLogger(PersonalMedico.class.getName()).log(Level.SEVERE, null, ex);
             }
             Conexion.cerrarConexion();
+            campoapellidos.setText("");
+            camponombre.setText("");
+            camponumerodelcolegiado.setText("");
+            campopass.setText("");
+            campotelefono.setText("");
+            campousuario.setText("");
+            combotipo.setSelectedIndex(0);
         }
 
     }

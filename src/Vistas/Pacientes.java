@@ -279,13 +279,15 @@ public class Pacientes extends javax.swing.JDialog {
     }//GEN-LAST:event_campocomboActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Paciente p = new Paciente(camponombre.getText(),
-                campoapellidos.getText(),
-                Integer.parseInt(campotel.getText()),
-                Integer.parseInt(campocombo.getSelectedItem().toString()));
+        String[] datosPaciente = new String[4];
+        datosPaciente[0] = camponombre.getText();
+        datosPaciente[1] = campoapellidos.getText();
+        datosPaciente[2] = campotel.getText();
+        datosPaciente[3] = campocombo.getSelectedItem().toString();
+
         Conexion.conectar();
-        if (Conexion.actualizaDatos(p, campodni.getText())) {
-            JOptionPane.showMessageDialog(this, "actualizacion correcta");
+        if (Conexion.actualizaDatos(datosPaciente, campodni.getText())) {
+            JOptionPane.showMessageDialog(this, "actualización correcta");
         } else {
             JOptionPane.showMessageDialog(this, "error");
         }

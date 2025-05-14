@@ -201,7 +201,7 @@ public class Login extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 String us;
     String pass;
-    public static String[] datosPersona;
+    public static String[] datosPersonal;
 
     public void acceso() throws SQLException {
         us = campouser.getText();
@@ -215,7 +215,7 @@ String us;
 
         Conexion.conectar();
         if (Conexion.acceder(us, passencript)) {
-            datosPersona = Conexion.recuperaDatosUser(us);
+            datosPersonal = Conexion.recuperaDatosUser(us);
             Conexion.cerrarConexion();
             MenuPrincipal p = new MenuPrincipal();
             p.setVisible(true);

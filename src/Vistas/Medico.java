@@ -5,6 +5,7 @@
 package Vistas;
 
 import Utilidades.Utilidades;
+import Utilidades.Encriptado;
 import Modelo.Paciente;
 import bbdd.Conexion;
 import java.awt.Insets;
@@ -108,6 +109,11 @@ public class Medico extends javax.swing.JFrame {
         jLabel3.setText("DNI paciente");
 
         campodni.setName("DNI"); // NOI18N
+        campodni.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campodniActionPerformed(evt);
+            }
+        });
 
         botonbuscar.setBackground(new java.awt.Color(0, 0, 0));
         botonbuscar.setForeground(new java.awt.Color(255, 255, 255));
@@ -322,7 +328,6 @@ public class Medico extends javax.swing.JFrame {
                     dni = campodni.getText();
                     nom = camponombre.getText();
                     ape = campoapellidos.getText();
-                    System.out.println(nom + ape);
                     camponombre.setText(paciente.getNombre());
                     campoapellidos.setText(paciente.getApellidos());
                     campotel.setText(String.valueOf(paciente.getTelefono()));
@@ -331,7 +336,7 @@ public class Medico extends javax.swing.JFrame {
                     mod = (DefaultTableModel) tabla.getModel();
                     camponuevoin.setEnabled(rootPaneCheckingEnabled);
                     camponueva.setEnabled(rootPaneCheckingEnabled);
-                    Conexion.cargarTablaConsultasMedicas(mod, dni);
+                    Conexion.cargarTablaConsultasMedicasPorPaciente(mod, dni);
                 } else {
                     JOptionPane.showMessageDialog(this, "No se encontró un paciente con el DNI proporcionado.");
                     NuevoPaciente N = new NuevoPaciente(this, rootPaneCheckingEnabled);
@@ -352,7 +357,7 @@ public class Medico extends javax.swing.JFrame {
         DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
         modelo.setRowCount(0);
         Conexion.conectar();
-        Conexion.cargarTablaConsultasMedicas(mod, dni);
+        Conexion.cargarTablaConsultasMedicasPorPaciente(mod, dni);
         Conexion.cerrarConexion();
 
     }//GEN-LAST:event_campoactualizarActionPerformed
@@ -368,8 +373,12 @@ public class Medico extends javax.swing.JFrame {
     }//GEN-LAST:event_camponuevaActionPerformed
 
     private void tablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMouseClicked
-       datosFila();
+        datosFila();
     }//GEN-LAST:event_tablaMouseClicked
+
+    private void campodniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campodniActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campodniActionPerformed
 
     /**
      * @param args the command line arguments
@@ -458,5 +467,4 @@ public class Medico extends javax.swing.JFrame {
 
     }
 
-    
 }

@@ -4,7 +4,7 @@
  */
 package Vistas;
 
-import static Vistas.Login.datosPersona;
+import static Vistas.Login.datosPersonal;
 import bbdd.Conexion;
 import java.sql.SQLException;
 import java.util.Date;
@@ -28,25 +28,25 @@ public class MenuPrincipal extends javax.swing.JFrame {
         
         Date fecha = new Date();
         campofecha.setText(fecha.toString());
-        if("MEDICO".equals(datosPersona[2])){
-        camponombre.setText("Facultativo " + datosPersona[0]);
-        camponumerocolegiado.setText("Numero del colegiado " + datosPersona[1]);
+        if("MEDICO".equals(datosPersonal[2])){
+        camponombre.setText("Facultativo " + datosPersonal[0]);
+        camponumerocolegiado.setText("Numero del colegiado " + datosPersonal[1]);
         campoagenda.setText("AGENDA DE CITAS MEDICAS");
         botonconsultas.setEnabled(true);
         botonpacientes.setEnabled(true);
          Conexion.conectar();
        Conexion.cargarcitasMedicas(mod);
        Conexion.cerrarConexion();
-        }else if ("ENFERMERIA".equals(datosPersona[2])){
-        camponombre.setText("Facultativo " + datosPersona[0]);
-        camponumerocolegiado.setText("Numero del colegiado " + datosPersona[1]);
+        }else if ("ENFERMERIA".equals(datosPersonal[2])){
+        camponombre.setText("Facultativo " + datosPersonal[0]);
+        camponumerocolegiado.setText("Numero del colegiado " + datosPersonal[1]);
         campoagenda.setText("AGENDA DE CITAS DE ENFERMERIA");
         botonenfermeria.setEnabled(true);
         Conexion.conectar();
         Conexion.cargarcitasEnfermeria(mod);
          Conexion.cerrarConexion();
-        }else if ("ADMIN".equals(datosPersona[2])){
-        camponombre.setText("Administrados " + datosPersona[0]);
+        }else if ("ADMIN".equals(datosPersonal[2])){
+        camponombre.setText("Administrados " + datosPersonal[0]);
         
         botonpersonal.setEnabled(true);
         Conexion.cerrarConexion();

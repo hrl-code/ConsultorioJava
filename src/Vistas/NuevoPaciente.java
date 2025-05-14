@@ -24,13 +24,12 @@ public class NuevoPaciente extends javax.swing.JDialog {
     public NuevoPaciente(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        if("MEDICO".equals(Login.datosPersona[2])){
-        campodni.setText(Medico.dni);
-        }else{
-        campodni.setText(Enfermeria.dni);
+        if ("MEDICO".equals(Login.datosPersonal[2])) {
+            campodni.setText(Medico.dni);
+        } else {
+            campodni.setText(Enfermeria.dni);
         }
-        
-        
+
         Conexion.conectar();
         Conexion.cargarCp(combocp);
         Conexion.cerrarConexion();
@@ -186,6 +185,7 @@ public class NuevoPaciente extends javax.swing.JDialog {
         campoocasional.setForeground(new java.awt.Color(255, 255, 255));
         campoocasional.setText("Ocasional");
 
+        campohombre.setBackground(new java.awt.Color(0, 204, 204));
         botonsexo.add(campohombre);
         campohombre.setForeground(new java.awt.Color(255, 255, 255));
         campohombre.setText("Hombre");
@@ -202,6 +202,7 @@ public class NuevoPaciente extends javax.swing.JDialog {
         campootro.setForeground(new java.awt.Color(255, 255, 255));
         campootro.setText("Otro");
 
+        camponulo.setBackground(new java.awt.Color(0, 204, 204));
         botonalchol.add(camponulo);
         camponulo.setForeground(new java.awt.Color(255, 255, 255));
         camponulo.setText("Nulo");
@@ -428,8 +429,8 @@ public class NuevoPaciente extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       registrarNuevoPaciente();
-       
+        registrarNuevoPaciente();
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -518,7 +519,7 @@ public class NuevoPaciente extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
-String  nombre, apellidos, email;
+String nombre, apellidos, email;
     String hombre, mujer, otro;
     String no, si, ocasional, habitual, nulo;
     String sexo, taba, consumoAlcohol, antecedentes, alergias;
@@ -527,32 +528,30 @@ String  nombre, apellidos, email;
 
     void registrarNuevoPaciente() {
 
-       
-          if (!Utilidades.campoVacio(camponombre)) {
+        if (!Utilidades.campoVacio(camponombre)) {
             Utilidades.lanzaAlertaCampoVacio(camponombre);
         } else if (!Utilidades.campoVacio(campoapellido)) {
             Utilidades.lanzaAlertaCampoVacio(campoapellido);
-        } else if (campofecha.getDate()== null) {
+        } else if (campofecha.getDate() == null) {
             JOptionPane.showMessageDialog(this, "Debes seleccionar una fecha por favor");
         } else if (!Utilidades.campoVacio(campotel)) {
             Utilidades.LazarAlertaCampoNumerico(this, campotel);
         } else if (!Utilidades.campoVacio(campoemail)) {
             Utilidades.lanzaAlertaCampoVacio(campoemail);
         } else if (Utilidades.comboNoSeleccionado(combocp)) {
-           JOptionPane.showMessageDialog(this, "Debes seleccionar un codigo postal valido");
+            JOptionPane.showMessageDialog(this, "Debes seleccionar un codigo postal valido");
         } else if (!Utilidades.areavacia(areaantecedentes)) {
             JOptionPane.showMessageDialog(this, "Debes esribir algo en antecedentes medicos porfavor");
         } else if (!Utilidades.areavacia(areapersonal)) {
             JOptionPane.showMessageDialog(this, "Debes seleccionar un codigo postal valido");
         } else {
 
-            
             nombre = camponombre.getText();
             apellidos = campoapellido.getText();
             FechaNac = campofecha.getDate();
             tele = Integer.parseInt(campotel.getText());
             email = campoemail.getText();
-             cp = Integer.parseInt(combocp.getSelectedItem().toString());
+            cp = Integer.parseInt(combocp.getSelectedItem().toString());
             antecedentes = areaantecedentes.getText();
             alergias = areapersonal.getText();
 
@@ -564,7 +563,7 @@ String  nombre, apellidos, email;
                 sexo = "OTROS";
             }
             if (campono.isSelected()) {
-                taba  = "NO";
+                taba = "NO";
             } else if (camposi.isSelected()) {
                 taba = "SI";
             }
@@ -574,11 +573,11 @@ String  nombre, apellidos, email;
             } else if (campohabitual.isSelected()) {
                 consumoAlcohol = "Habitual";
             } else if (camponulo.isSelected()) {
-                consumoAlcohol  = "Nulo";
+                consumoAlcohol = "Nulo";
             }
 
             Paciente paciente = new Paciente(campodni.getText(), nombre, apellidos, FechaNac, tele, email, cp, sexo, taba, consumoAlcohol, antecedentes, alergias, FechaNac);
-              Conexion.conectar();
+            Conexion.conectar();
             if (Conexion.registrarPaciente(paciente)) {
 
                 JOptionPane.showMessageDialog(this, "Registro realizado correctamente.");
@@ -587,6 +586,7 @@ String  nombre, apellidos, email;
                 JOptionPane.showMessageDialog(this, "Error al realizar el registro, intentalo más tarde.");
             }
             Conexion.cerrarConexion();
+            this.dispose();
 
         }
 

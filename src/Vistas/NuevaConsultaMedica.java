@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package Vistas;
+
 import Modelo.Consulta;
 import Utilidades.Utilidades;
 import static Vistas.Medico.dni;
@@ -16,7 +17,6 @@ import javax.swing.JOptionPane;
  */
 public class NuevaConsultaMedica extends javax.swing.JDialog {
 
-    
     public NuevaConsultaMedica(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -198,12 +198,11 @@ public class NuevaConsultaMedica extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         registar();
-        this.dispose();;
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-this.dispose();
-        
+        this.dispose();
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -269,38 +268,39 @@ this.dispose();
     private javax.swing.JScrollPane jScrollPane3;
     // End of variables declaration//GEN-END:variables
 
+    String diag;
+    String trat;
+    String obser;
+    Date fecha = new Date();
+    int colegiado;
 
-String diag;
-String trat;
-String obser;
-Date fecha = new Date();
-int colegiado;
- public void registar(){
-     
-     if(!Utilidades.areavacia(campodiagnostico)){
-         JOptionPane.showMessageDialog(this, "campo obligatorio");
-     }else if(!Utilidades.areavacia(campoobservaciones)){
-         JOptionPane.showMessageDialog(this, "campo abligatorio");
-     }else if (!Utilidades.areavacia(campotratamiento)){
-         JOptionPane.showMessageDialog(this, "campo obligatorio");
-     }else {
-     String dnii = campodni.getText();
-     diag = campodiagnostico.getText();
-     trat = campotratamiento.getText();
-     obser = campoobservaciones.getText();
-     colegiado = Integer.parseInt(Login.datosPersona[1]);
-     
-     Consulta cg = new Consulta(dnii, fecha, diag, trat, obser, colegiado);
-     Conexion.conectar();
-     
-     if(Conexion.registrarConsultaMedica(cg)){
-     JOptionPane.showMessageDialog(this, "Registro realizado correctamente");
-     }else{
-     JOptionPane.showMessageDialog(this, "Error en la acción de registro. Inténtelo más tarde o póngase en contacto con el administrador del sistema");
-     }
-     Conexion.cerrarConexion();
-     }
- 
- }
-        
+    public void registar() {
+
+        if (!Utilidades.areavacia(campodiagnostico)) {
+            JOptionPane.showMessageDialog(this, "El campo de diagnóstico es obligatorio");
+        } else if (!Utilidades.areavacia(campotratamiento)) {
+            JOptionPane.showMessageDialog(this, "El campo de tratamiento es obligatorio");
+        } else if (!Utilidades.areavacia(campoobservaciones)) {
+            JOptionPane.showMessageDialog(this, "El campo de observaciones es obligatorio");
+        } else {
+            String dnii = campodni.getText();
+            diag = campodiagnostico.getText();
+            trat = campotratamiento.getText();
+            obser = campoobservaciones.getText();
+            colegiado = Integer.parseInt(Login.datosPersonal[1]);
+
+            Consulta cg = new Consulta(dnii, fecha, diag, trat, obser, colegiado);
+            Conexion.conectar();
+
+            if (Conexion.registrarConsultaMedica(cg)) {
+                JOptionPane.showMessageDialog(this, "Registro realizado correctamente");
+            } else {
+                JOptionPane.showMessageDialog(this, "Error en la acción de registro. Inténtelo más tarde o póngase en contacto con el administrador del sistema");
+            }
+            Conexion.cerrarConexion();
+            this.dispose();
+        }
+
+    }
+
 }

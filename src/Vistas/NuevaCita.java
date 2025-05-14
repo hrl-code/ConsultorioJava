@@ -13,8 +13,6 @@ import static Vistas.Medico.dni;
 import static Vistas.Medico.email;
 import static Vistas.Medico.nom;
 
-
-
 import bbdd.Conexion;
 import java.util.Date;
 import java.util.logging.Level;
@@ -34,8 +32,8 @@ public class NuevaCita extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         campodni.setText(dni);
-        
-        camponomape.setText(nom + " " + ape );
+
+        camponomape.setText(nom + " " + ape);
     }
 
     /**
@@ -280,7 +278,7 @@ public class NuevaCita extends javax.swing.JDialog {
         } else if (Utilidades.comboNoSeleccionado(campohora)) {
             JOptionPane.showMessageDialog(this, "Debes seleccionar una hora por favor");
         } else {
-            
+
             String dni = campodni.getText();
             String nombre = camponomape.getText();
             hora = Double.parseDouble(campohora.getSelectedItem().toString());
@@ -300,9 +298,9 @@ public class NuevaCita extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(this, "Error al realizar el registro, intentalo más tarde.");
             }
             Conexion.cerrarConexion();
+            this.dispose();
 
         }
     }
-    
 
 }
