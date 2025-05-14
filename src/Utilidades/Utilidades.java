@@ -54,16 +54,7 @@ public class Utilidades {
 
     }
 
-    public static boolean validaciontelefonofijo(String telefono) {
-        String patrontelefonofijo = "^[9,8]{1}[0-8]{1}[0-9]{7}$";
-        return telefono.matches(patrontelefonofijo);
 
-    }
-
-    public static boolean rangotel(int tefn) {
-        return tefn <= 988999999;
-
-    }
 
     public static boolean LazarAlertaCampoNumerico(Component c, JTextField campo) {
         JOptionPane.showMessageDialog(c, "El campo" + campo.getName() + "solo admite numeros");

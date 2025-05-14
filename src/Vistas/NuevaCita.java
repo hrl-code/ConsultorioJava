@@ -269,17 +269,21 @@ public class NuevaCita extends javax.swing.JDialog {
 
     public void nuevaCita() throws Exception {
 
+        Date hoy = new Date();
+
         if (!Utilidades.campoVacio(campodni)) {
             Utilidades.lanzaAlertaCampoVacio(campodni);
         } else if (!Utilidades.campoVacio(camponomape)) {
             Utilidades.lanzaAlertaCampoVacio(camponomape);
+        } else if (campofecha.getDate().before(hoy)) {
+            JOptionPane.showMessageDialog(this, "La fecha no puede ser anterior a la actual");
         } else if (campofecha.getDate() == null) {
             JOptionPane.showMessageDialog(this, "Debes seleccionar una fecha por favor");
         } else if (Utilidades.comboNoSeleccionado(campohora)) {
             JOptionPane.showMessageDialog(this, "Debes seleccionar una hora por favor");
         } else {
 
-            String dni = campodni.getText();
+            String dni = campodni.getText().toUpperCase();
             String nombre = camponomape.getText();
             hora = Double.parseDouble(campohora.getSelectedItem().toString());
             fecha = campofecha.getDate();

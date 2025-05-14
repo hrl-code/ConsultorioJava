@@ -536,6 +536,8 @@ String nombre, apellidos, email;
             JOptionPane.showMessageDialog(this, "Debes seleccionar una fecha por favor");
         } else if (!Utilidades.campoVacio(campotel)) {
             Utilidades.LazarAlertaCampoNumerico(this, campotel);
+        } else if (Integer.parseInt(campotel.getText()) > 111111111 && Integer.parseInt(campotel.getText()) < 999999999) {
+            JOptionPane.showMessageDialog(this, "Debes ingresar un numero de telefono valido");
         } else if (!Utilidades.campoVacio(campoemail)) {
             Utilidades.lanzaAlertaCampoVacio(campoemail);
         } else if (Utilidades.comboNoSeleccionado(combocp)) {

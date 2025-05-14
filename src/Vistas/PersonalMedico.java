@@ -300,6 +300,8 @@ String nom, ape, usua, cont, tipoP;
             Utilidades.lanzaAlertaCampoVacio(campoapellidos);
         } else if (!Utilidades.campoVacio(campotelefono)) {
             Utilidades.lanzaAlertaCampoVacio(campotelefono);
+        } else if (Integer.parseInt(campotelefono.getText()) > 111111111 && Integer.parseInt(campotelefono.getText()) < 999999999) {
+            JOptionPane.showMessageDialog(this, "Debes ingresar un numero de telefono valido");
         } else if (!Utilidades.campoVacio(campousuario)) {
             Utilidades.lanzaAlertaCampoVacio(campousuario);
         } else if (!Utilidades.campoVacio(campopass)) {
